@@ -14,14 +14,13 @@ public class Utils {
 
     public static List<EarthquakeDistance> sortEarthquakesAsc(int limit, List<Earthquake> earthquakes,
                                                               Location target){
-        limit = Math.min(limit, earthquakes.size());
+
 
         List<EarthquakeDistance> earthquakeDistance = new ArrayList<>();
         for (Earthquake e : earthquakes) {
             Location location = e.getLocation();
             int distance = getDistance(location, target);
-            assert (distance >= 0);
-
+            //assert (distance >= 0);
             earthquakeDistance.add(new EarthquakeDistance(e, distance));
         }
 
@@ -29,14 +28,15 @@ public class Utils {
         Collections.sort(earthquakeDistance); // uses Comparator in EarthquakeDistance
         //printGivenEarthquakes("\nSorted earthquakes:", earthquakeDistance, 0,1500,5000 );
 
-        return earthquakeDistance.subList(0,limit);
+        // this should sort and remove duplicates!
+        //SortedSet<Earthquake> noDuplicates2 = new TreeSet<>(earthquakes);
+
+        return earthquakeDistance.subList(0, Math.min(limit, earthquakes.size()));
     }
 
     /*This code is contributed by Prasad Kshirsagar
     https://www.geeksforgeeks.org/program-distance-two-points-earth */
     public static int getDistance(Location loc1, Location loc2){
-        //TODO implement distance between 2 locations
-        // We would like each distance to be rounded to full kilometers
         double lat1 = loc1.getLatitude();
         double lon1 = loc1.getLongitude();
         double lat2 = loc2.getLatitude();
@@ -90,9 +90,6 @@ public class Utils {
 
     public static List<Earthquake> removeDuplicateEarthquakes(List<Earthquake> earthquakes) {
         Set<Earthquake> noDuplicates = new HashSet<>(earthquakes);
-        //System.out.println(">>>>>>>>>> noDuplicates: " + noDuplicates.size());
-        //SortedSet<Earthquake> noDuplicates2 = new TreeSet<>(earthquakes);
-
         return new ArrayList<>(noDuplicates);
     }
 
