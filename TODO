@@ -1,0 +1,17 @@
+
+1. earthquakeDistance.sort(); replace with SortedSet = new TreeSet
+public static List<Earthquake> removeDuplicateEarthquakes(List<Earthquake> earthquakes) {
+        Set<Earthquake> noDuplicates = new HashSet<>(earthquakes);
+        //System.out.println(">>>>>>>>>> noDuplicates: " + noDuplicates.size());
+        //SortedSet<Earthquake> noDuplicates2 = new TreeSet<>(earthquakes);
+
+        return new ArrayList<>(noDuplicates);
+    }
+
+    2. comparable vs comparator
+    3. asynchronous request
+    4. Can we add SpringBoot Starter Test?
+    5. Add more tests here
+    6. Try with OkHttp?! Better than HttpClient Java 11?
+
+

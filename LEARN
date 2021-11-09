@@ -1,0 +1,25 @@
+Fetch from API:
+1. Deps: OkHttp (or JDK 11 java.net.http.HttpClient), jackson-databind (for conversion json<->Java)
+2. Check API to plan Java clesses for JSON, Is URL correct?
+3. Use Jackson annos in domain classes for JSON conversion to Java (or go to https://www.jsonschema2pojo.org , which creates classes)
+4. Create HTTP client interface & implementation.
+5. Create request, Open connection, execute request. Use response to check status code.
+6. Get request.body() as String. Check if it gets data.
+7. ObjectMapper.readValue(json. MyItem.class) to get MyItem in Java. Check if deserialization is successful.
+8. Return the selected values from the API to work on them using some service classes.
+------------------
+If using SpringBoot:
+1. Add @Service bean with RestTemplate.
+2. restTempl. getForObject/Entity(REQUEST_URL, MyData.class) -> creates connection, converts to String or .class, handles exceptions
+  ResposeEntity is good for getting the status code.
+  -------------------
+  Edit Confugurations / + button in top left corner / Maven / spring-boot:run in Goals.
+  Now you can run this configuration from Run menu.
+  This plugin is necessary for it to work.
+
+  <plugin>
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-maven-plugin</artifactId>
+  		<version>2.5.6</version>
+  </plugin>
+
